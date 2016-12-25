@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE struts PUBLIC
+        "-//Apache Software Foundation//DTD Struts Configuration 2.3//EN"
+        "http://struts.apache.org/dtds/struts-2.3.dtd">
+
+<struts>
+    <package name="Blog" extends="struts-default" namespace="/Blog">
+        <!--博客的主页面-->
+        <action name="Jump_Blog_MainPage" class="com.blog.action.jumpAction.Jump_Blog_MainPage" method="execute">
+            <result name="success">/WEB-INF/jsp/blog/blog_mainpage.jsp</result>
+        </action>
+        <!--展示博客的页面-->
+        <action name="Jump_Show_Blog_Page" class="com.blog.action.jumpAction.Jump_Show_Blog" method="execute">
+            <result name="success">/WEB-INF/jsp/blog/show_blog.jsp</result>
+        </action>
+        <!--博客主页跳转到写博客页面-->
+        <action name="Jump_Write_Blog_Page" class="com.blog.action.jumpAction.Jump_Write_Blog_Page" >
+            <result name="success">/WEB-INF/jsp/blog/write_blog.jsp</result>
+        </action>
+        <!--写博客-->
+        <action name="Blog_Action" class="com.blog.action.jumpAction.Blog_Action" >
+            <result name="success">/WEB-INF/jsp/blog/blog_mainpage.jsp</result>
+        </action>
+    </package>
+</struts>

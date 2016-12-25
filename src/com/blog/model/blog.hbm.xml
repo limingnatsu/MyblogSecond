@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+        "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+    <class name="com.blog.model.Blog" table="blog">
+             <!-- 主键的设置,generator标识主键生成方式,因为native便于数据库的移植所以.嘿嘿!你懂的 -->
+            <id name="id" type="int" column="id">
+                <generator class="native"/>
+            </id>
+
+             <property name="title" type="java.lang.String" column="title" />
+                <property name="content" type="java.lang.String" column="content"></property>
+    </class>
+</hibernate-mapping>

@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:tx="http://www.springframework.org/schema/tx"
+       xmlns:aop="http://www.springframework.org/schema/aop" xmlns:p="http://www.springframework.org/schema/p"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx.xsd http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop.xsd">
+
+    <bean name="blog_Action" class="com.blog.action.jumpAction.Blog_Action">
+        <property name="Blog_Service" ref="blog_Service"></property>
+        <property name="blog" ref="blog"></property>
+    </bean>
+    <bean name="blog" class="com.blog.model.Blog"></bean>
+    <bean name="blog_Dao" class="com.blog.dao.Blog_Dao">
+        <property name="sessionFactory" ref="sessionFactory"></property>
+        <property name="hibernateTemplate" ref="hibernateTemplate"></property>
+
+    </bean>
+
+    <bean name="blog_Service" class="com.blog.service.Blog_Service" >
+        <property name="blog_dao" ref="blog_Dao"></property>
+    </bean>
+
+    <bean id="hibernateTemplate" class="org.springframework.orm.hibernate5.HibernateTemplate">
+        <property name="sessionFactory" ref="sessionFactory" />
+    </bean>
+        <!-- 属性文件配置 -->
+    <bean id="propertyConfigurer" class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
+        <property name="location">
+                <value> classpath:conf/jdbc.properties</value>
+        </property>
+    </bean>
+
+    <!-- 配置dbcp2连接池 -->
+    <bean id="dbcpdataSource" class="org.apache.commons.dbcp2.BasicDataSource"
+          destroy-method="close">
+        <property name="driverClassName" value="${driverClassName}" />
+        <property name="url" value="${url}" />
+        <property name="username" value="${username}" />
+        <property name="password" value="${password}" />
+        <!-- 连接初始值，连接池启动时创建的连接数量的初始值  默认值是0 -->
+        <property name="initialSize" value="3" />
+        <!-- 最小空闲值.当空闲的连接数少于阀值时，连接池就会预申请去一些连接，以免洪峰来时来不及申请  默认值是0 -->
+        <property name="minIdle" value="3" />
+        <!-- 最大空闲值.当经过一个高峰时间后，连接池可以慢慢将已经用不到的连接慢慢释放一部分，一直减少到maxIdle为止 ，0时无限制  默认值是8 -->
+        <property name="maxIdle" value="5" />
+    </bean>
+
+    <!--构建sessionFactory-->
+    <bean id="sessionFactory" class="org.springframework.orm.hibernate5.LocalSessionFactoryBean" destroy-method="destroy">
+        <property name="dataSource" ref="dbcpdataSource"></property>
+        <!-- 引入映射文件，如果有多个可以继续添加 <value> -->
+        <property name="mappingLocations">
+            <list>
+                <value>classpath:com/blog/model/blog.hbm.xml</value>
+            </list>
+        </property>
+        <property name="hibernateProperties">
+            <props>
+                <prop key="hibernate.dialect">${hibernate.dialect}</prop>
+                <prop key="hibernate.hbm2ddl.auto">${hibernate.hbm2ddl.auto}</prop>
+                <prop key="hibernate.show_sql">${hibernate.show_sql}</prop>
+                <prop key="hibernate.format_sql">${hibernate.format_sql}</prop>
+            </props>
+        </property>
+    </bean>
+    <!-- 配置事务管理器类 -->
+    <bean id="txManager" class="org.springframework.orm.hibernate5.HibernateTransactionManager">
+        <property name="sessionFactory" ref="sessionFactory"></property>
+    </bean>
+
+    <bean id="test" class="test.PoingClass"></bean>
+    <aop:config>
+        <!--定义切面类-->
+        <aop:aspect id="aspect" ref="test">
+            <!--确定要切的地方-->
+            <aop:pointcut id="pointUserMgr" expression="execution(* com.blog.service.*.*(..))"/>
+            <!--确定要切的地方和要使用的方法和切入的顺序-->
+            <aop:before method="say"  pointcut-ref="pointUserMgr"/>
+            <aop:after method="after"  pointcut-ref="pointUserMgr"/>
+        </aop:aspect>
+    </aop:config>
+
+    <!-- 配置事务的传播特性 -->
+    <tx:advice id="txAdvice" transaction-manager="txManager">
+        <tx:attributes>
+            <tx:method name="save*" propagation="REQUIRED"/>
+        </tx:attributes>
+    </tx:advice>
+
+    <!-- 那些类的哪些方法参与事务 -->
+    <aop:config>
+        <aop:pointcut id="allServiceMethod" expression="execution(public * com.blog.service.*.*(..))"/>
+        <!--将切面和切面方法配置在一起-->
+        <aop:advisor pointcut-ref="allServiceMethod" advice-ref="txAdvice"/>
+    </aop:config>
+
+
+</beans>
+
+
