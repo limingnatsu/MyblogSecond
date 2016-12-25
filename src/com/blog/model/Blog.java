@@ -31,4 +31,13 @@ public class Blog {
     public void setContent(String content) {
         this.content = content;
     }
+
+    @Override
+    public String toString() {
+        return "Blog{" +
+                "id=" + id +
+                ", 标题='" + title + '\'' +
+                ", 内容='" + content + '\'' +
+                '}';
+    }
 }

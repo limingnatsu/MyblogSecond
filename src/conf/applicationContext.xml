@@ -82,7 +82,10 @@
     <!-- 配置事务的传播特性 -->
     <tx:advice id="txAdvice" transaction-manager="txManager">
         <tx:attributes>
-            <tx:method name="save*" propagation="REQUIRED"/>
+            <tx:method name="save*" propagation="REQUIRED" read-only="false"/>
+            <tx:method name="list*" propagation="REQUIRED" read-only="false"/>
+            <tx:method name="delete*" propagation="REQUIRED" read-only="false"/>
+            <tx:method name="find*" propagation="REQUIRED" read-only="false"/>
         </tx:attributes>
     </tx:advice>
 

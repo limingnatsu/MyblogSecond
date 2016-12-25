@@ -14,5 +14,7 @@
 <h2>点击之后跳转到写博客的页面</h2>
 <a href="/Blog/Jump_Write_Blog_Page">写博客</a>
 <h5>展示博客的地方</h5>
+
+
 </body>
 </html>
