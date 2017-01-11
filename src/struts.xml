@@ -6,21 +6,26 @@
 
 <struts>
     <package name="Blog" extends="struts-default" namespace="/Blog">
-        <!--博客的主页面-->
-        <action name="Jump_Blog_MainPage" class="com.blog.action.jumpAction.Jump_Blog_MainPage" method="execute">
-            <result name="success">/WEB-INF/jsp/blog/blog_mainpage.jsp</result>
-        </action>
-        <!--展示博客的页面-->
+        <!--去博客的主页面-->
         <action name="Jump_Show_Blog_Page" class="com.blog.action.jumpAction.Jump_Show_Blog" method="execute">
             <result name="success">/WEB-INF/jsp/blog/show_blog.jsp</result>
         </action>
-        <!--博客主页跳转到写博客页面-->
+        <!--从博客主页跳转到写博客页面-->
         <action name="Jump_Write_Blog_Page" class="com.blog.action.jumpAction.Jump_Write_Blog_Page" >
             <result name="success">/WEB-INF/jsp/blog/write_blog.jsp</result>
         </action>
         <!--写博客-->
-        <action name="Blog_Action" class="com.blog.action.jumpAction.Blog_Action" >
-            <result name="success">/WEB-INF/jsp/blog/blog_mainpage.jsp</result>
+        <action name="Blog_Action" class="com.blog.action.jumpAction.Blog_Action" method="saveBlog" >
+            <result name="success">Show_Blog.action</result>
         </action>
+        <!--展示博客-->
+     <action name="Show_Blog" class="com.blog.action.jumpAction.Blog_Action" method="showBlog">
+            <result name="success">/WEB-INF/jsp/blog/show_blog.jsp</result>
+        </action>
+        <!--删除博客-->
+        <action name="Delete_Blog" class="com.blog.action.jumpAction.Blog_Action" method="deleteBlog">
+            <result name="success" type="redirect">/index.jsp</result>
+        </action>
+
     </package>
 </struts>

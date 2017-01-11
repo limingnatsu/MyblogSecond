@@ -27,17 +27,17 @@
                 内容
             </td>
             <td>
-                <input type="text" name="content">
+                <input type="textarea" name="content" rows="30" cols="200">
             </td>
         </tr>
 
     </table>
     <tr>
         <td>
-            <input type="submit">提交
+            <input type="submit">
         </td>
         <td>
-            <input type="reset">重置
+            <input type="reset">
         </td>
     </tr>
 </form>

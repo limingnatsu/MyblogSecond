@@ -1,7 +1,7 @@
 <component name="ArtifactManager">
-  <artifact type="exploded-war" name="MyblogS:war exploded">
-    <output-path>$PROJECT_DIR$/out/artifacts/MyblogS_war_exploded</output-path>
-    <root id="root">
+  <artifact type="war" name="MyBlog">
+    <output-path>$PROJECT_DIR$/out/artifacts/MyBlog</output-path>
+    <root id="archive" name="MyBlog.war">
       <element id="javaee-facet-resources" facet="MyblogS/web/Web" />
       <element id="directory" name="WEB-INF">
         <element id="directory" name="classes">
@@ -24,6 +24,13 @@
           <element id="library" level="project" name="struts2-spring-plugin-2.3.4.1" />
           <element id="library" level="project" name="aspectjweaver" />
           <element id="library" level="project" name="aspectj-1.8.9" />
+          <element id="library" level="project" name="hamcrest-core-1.3" />
+          <element id="library" level="project" name="junit-4.12" />
+          <element id="library" level="project" name="javax.servlet" />
+          <element id="library" level="project" name="javax.servlet.jsp" />
+          <element id="library" level="project" name="gson-2.8.0" />
+          <element id="library" level="project" name="servlet-api" />
+          <element id="library" level="project" name="commons-beanutils-1.9" />
         </element>
       </element>
     </root>

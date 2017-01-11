@@ -8,8 +8,8 @@ import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 import org.springframework.orm.hibernate5.HibernateTemplate;
 
-import java.util.Iterator;
-import java.util.List;
+import java.text.SimpleDateFormat;
+import java.util.*;
 
 /**
  * Created by nervliming on 2016/12/22.
@@ -18,12 +18,10 @@ public class test {
     
     public static void main(String[] args) throws Exception{
 
-        ApplicationContext ac = new ClassPathXmlApplicationContext("/conf/applicationContext.xml");
+      ApplicationContext ac = new ClassPathXmlApplicationContext("/conf/applicationContext.xml");
         Blog_Dao blog_dao = (Blog_Dao) ac.getBean("blog_Dao");
-        Blog blog = new Blog();
-        blog.setId(2);
-        blog.setTitle("可怕");
-        blog_dao.deleteBlog(blog);
+
+
 
 
         /*测试展示全部
@@ -34,6 +32,7 @@ public class test {
             System.out.println(blog1);
         }
 */
+        
 
    }
 }
