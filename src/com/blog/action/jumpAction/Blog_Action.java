@@ -3,17 +3,17 @@ package com.blog.action.jumpAction;
 import com.blog.action.jumpAction.Jump_Show_Blog;
 import com.blog.model.Blog;
 import com.blog.service.Blog_Service;
-import com.google.gson.Gson;
+
 import com.opensymphony.xwork2.ActionContext;
 import com.opensymphony.xwork2.ActionSupport;
 import com.opensymphony.xwork2.ModelDriven;
 import org.apache.struts2.ServletActionContext;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
-import org.junit.Test;
+
 import org.springframework.orm.hibernate5.HibernateTemplate;
 
-import javax.servlet.http.HttpServletResponse;
+
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.ArrayList;

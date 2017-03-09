@@ -5,7 +5,7 @@ import com.opensymphony.xwork2.ActionContext;
 import com.sun.net.httpserver.Authenticator;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
-import org.junit.Test;
+
 import org.springframework.orm.hibernate4.support.HibernateDaoSupport;
 import org.springframework.orm.hibernate5.HibernateTemplate;
 

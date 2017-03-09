@@ -22,6 +22,11 @@
   <![endif]-->
   </head>
 <body>
+<style>
+  #nav{
+
+  }
+</style>
 <!--header start-->
 <div id="header">
   <h1>幽暗森林</h1>

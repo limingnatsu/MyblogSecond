@@ -16,7 +16,7 @@
         </action>
         <!--写博客-->
         <action name="Blog_Action" class="com.blog.action.jumpAction.Blog_Action" method="saveBlog" >
-            <result name="success">Show_Blog.action</result>
+            <result name="success" type="redirect">Show_Blog.action</result>
         </action>
         <!--展示博客-->
      <action name="Show_Blog" class="com.blog.action.jumpAction.Blog_Action" method="showBlog">
